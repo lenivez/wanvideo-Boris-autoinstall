@@ -1,20 +1,14 @@
 #!/bin/bash
+set -e
 
-echo "=== wanvideo-autoinstall: старт ==="
+echo "== Запуск автозагрузки моделей =="
 
-cd /workspace
+export HF_TOKEN="${HF_TOKEN}"
 
-# 1. Клонируем или обновляем репозиторий
-if [ ! -d "wanvideo-Boris-autoinstall" ]; then
-    git clone https://github.com/lenivez/wanvideo-Boris-autoinstall.git
-else
-    cd wanvideo-Boris-autoinstall
-    git pull
-    cd ..
-fi
+bash /workspace/install_models.sh | tee /workspace/model_download.log
 
-# 2. Запускаем установку моделей
-bash /workspace/wanvideo-Boris-autoinstall/install_models.sh
+echo "== Запуск ComfyUI =="
 
-# 3. Запускаем ComfyUI
-bash /workspace/ComfyUI/start.sh
+cd /workspace/ComfyUI
+python3 main.py
+
