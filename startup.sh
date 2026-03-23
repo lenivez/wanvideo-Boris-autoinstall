@@ -1,14 +1,10 @@
 #!/bin/bash
 set -e
 
-echo "== Запуск автозагрузки моделей =="
+echo "=== Wan Video — установка моделей (Boris Edition) ==="
 
-export HF_TOKEN="${HF_TOKEN}"
+echo "=== Запуск install_models.sh ==="
 
-bash /workspace/install_models.sh | tee /workspace/model_download.log
+bash /workspace/wanvideo-Boris-autoinstall/install_models.sh
 
-echo "== Запуск ComfyUI =="
-
-cd /workspace/ComfyUI
-python3 main.py
-
+echo "=== Все модели Wan Video успешно загружены! ==="
